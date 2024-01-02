@@ -1,0 +1,28 @@
+!IFNDEF _NMAKE_REFER_INCLUDED
+_NMAKE_REFER_INCLUDED=1
+
+!IFNDEF O
+O=obj
+!ENDIF
+!IFNDEF S
+S=.
+!ENDIF
+
+CC = cl
+CFLAGS = /nologo /O2 /D_CRT_SECURE_NO_WARNINGS
+LDFLAGS = /nologo
+OBJS = $O\refer.obj
+
+all:: refer.exe
+refer.exe: $(OBJS)
+	$(CC) /Fe:$@ $(OBJS) $(LDFLAGS)
+clean::
+	-del /Q $(OBJS) refer.exe
+
+#
+$O:
+    if not exist $O mkdir $O
+$O/refer.obj: $O $S/refer.c
+	$(CC) /c /Fo:$@ $(CFLAGS) $S/$(@B).c /DNO_UNISTD
+
+!ENDIF

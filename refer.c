@@ -20,7 +20,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifndef NO_UNISTD
 #include <unistd.h>
+#endif
 
 #define NREFS		(1 << 14)
 #define LEN(a)		(sizeof(a) / sizeof((a)[0]))
